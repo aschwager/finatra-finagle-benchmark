@@ -49,12 +49,12 @@ wrk.headers["Content-Type"] = "application/json"
 Running 1m test @ http://localhost:8888/fibonacci
   16 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     9.27ms    2.45ms 162.97ms   90.65%
-    Req/Sec     2.58k   371.64    12.49k    92.92%
-  2453297 requests in 1.00m, 713.59MB read
-  Socket errors: connect 0, read 703, write 0, timeout 0
-Requests/sec:  40833.13
-Transfer/sec:     11.88MB
+    Latency    11.14ms   10.51ms 268.47ms   97.55%
+    Req/Sec     2.39k   437.70     3.41k    90.66%
+  2285670 requests in 1.00m, 667.01MB read
+  Socket errors: connect 0, read 594, write 0, timeout 0
+Requests/sec:  38071.96
+Transfer/sec:     11.11MB
 ```
 
 ##### Finatra
@@ -64,10 +64,94 @@ Transfer/sec:     11.88MB
 Running 1m test @ http://localhost:8888/fibonacci
   16 threads and 400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
-    Latency     9.81ms    4.36ms 174.85ms   90.49%
-    Req/Sec     2.50k   307.14     5.04k    91.01%
-  2385607 requests in 1.00m, 696.18MB read
-  Socket errors: connect 0, read 618, write 0, timeout 0
-Requests/sec:  39731.10
-Transfer/sec:     11.59MB
+    Latency    12.36ms   13.65ms 253.15ms   95.41%
+    Req/Sec     2.31k   498.43     3.58k    88.12%
+  2204590 requests in 1.00m, 645.46MB read
+  Socket errors: connect 0, read 637, write 0, timeout 0
+Requests/sec:  36702.41
+Transfer/sec:     10.75MB
 ```
+
+##### Difference
+
+Finatra / Finagle = 0.964027331
+
+### Results - Execution 2
+
+* MacBook Pro (Retina, Mid 2012)
+* Processor 2.6 GHz Intel Core i7
+* Memory 8 GB 1600 MHz DDR3
+
+##### Finagle
+
+```
+[~/wrk]$ ./wrk -t16 -c400 -d60s -s fin-fan.lua http://localhost:8888/fibonacci                                                                                                                                                                                     *[master]
+Running 1m test @ http://localhost:8888/fibonacci
+  16 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    11.21ms   15.40ms 595.90ms   98.02%
+    Req/Sec     2.42k   482.14     9.93k    91.05%
+  2293522 requests in 1.00m, 669.31MB read
+  Socket errors: connect 0, read 682, write 0, timeout 0
+Requests/sec:  38180.35
+Transfer/sec:     11.14MB
+```
+
+##### Finatra
+
+```
+[~/wrk]$ ./wrk -t16 -c400 -d60s -s fin-fan.lua http://localhost:8888/fibonacci                                                                                                                                                                                     *[master]
+Running 1m test @ http://localhost:8888/fibonacci
+  16 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    13.34ms   21.33ms 650.00ms   94.92%
+    Req/Sec     2.41k   571.21     4.15k    85.70%
+  2286147 requests in 1.00m, 669.33MB read
+  Socket errors: connect 0, read 663, write 0, timeout 0
+Requests/sec:  38056.51
+Transfer/sec:     11.14MB
+```
+
+##### Difference
+
+Finatra / Finagle = 0.996756447
+
+### Results - Execution 3
+
+* MacBook Pro (Retina, Mid 2012)
+* Processor 2.6 GHz Intel Core i7
+* Memory 8 GB 1600 MHz DDR3
+
+##### Finagle
+
+```
+[~/wrk]$ ./wrk -t16 -c400 -d60s -s fin-fan.lua http://localhost:8888/fibonacci                                                                                                                                                                                     *[master]
+Running 1m test @ http://localhost:8888/fibonacci
+  16 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    11.08ms   12.78ms 593.52ms   98.40%
+    Req/Sec     2.30k   509.77     8.67k    84.29%
+  2182630 requests in 1.00m, 636.94MB read
+  Socket errors: connect 0, read 632, write 0, timeout 0
+Requests/sec:  36337.01
+Transfer/sec:     10.60MB
+```
+
+##### Finatra
+
+```
+[~/wrk]$ ./wrk -t16 -c400 -d60s -s fin-fan.lua http://localhost:8888/fibonacci                                                                                                                                                                                     *[master]
+Running 1m test @ http://localhost:8888/fibonacci
+  16 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    12.55ms   19.34ms 614.73ms   95.33%
+    Req/Sec     2.47k   554.22     3.85k    87.00%
+  2337786 requests in 1.00m, 684.45MB read
+  Socket errors: connect 0, read 635, write 0, timeout 0
+Requests/sec:  38920.92
+Transfer/sec:     11.40MB
+```
+
+##### Difference
+
+Finatra / Finagle = 1.071109593
